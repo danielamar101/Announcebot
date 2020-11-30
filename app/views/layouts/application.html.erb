@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AnnouncebotFinal</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <%= yield %>
+
+    <% if current_user %>
+    <p><%= link_to "Logout", logout_path%></p>
+  <% else %>
+    <p><%= link_to "Login", login_path%></p>
+    <br>
+    <p><%= link_to "Signup", signup_path%></p>
+  <% end %>
+  </body>
+</html>

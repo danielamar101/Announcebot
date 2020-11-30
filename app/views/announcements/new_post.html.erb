@@ -1,32 +1,27 @@
-<!-- app/views/application/new_post.html.erb -->
 
-<html>
-<head>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<h1>New Post</h1>
+<%= form_with scope: :announcements, url: create_post_path, local: true do |f| %>
+    <p>
+      <%= f.label :"Title" %><br/>
+      <%= f.text_field :title %>
+    </p>
 
-<form method="post" action="/create_post">
+    <p>
+      <%= f.label :"Announcement Body" %><br/>
+      <%= f.text_field :announcement %>
+    </p>
 
-  <label>Title</label>
-  <input name="title" type="text" />
-  <br /> <br />
+    <p>
+      <%= f.label :"Date" %><br/>
+      <%= f.text_field :date %>
+    </p>
 
-  <label>Announcement</label>
-  <textarea name="announcement"></textarea>
-  <br /> <br />
+    <p>
+      <%= f.label :"Time" %><br/>
+      <%= f.text_field :time %>
+    </p>
 
-  <label>Date</label>
-  <input name="date" type="text" />
-  <br /> <br />
-
-  <label>Time</label>
-  <input name="time" type="text" />
-  <br /> <br />
-
-  <input type="submit" value="Create Announcement" />
-
-</form>
-
-</body>
-</html>
+    <p>
+      <%= f.submit  %>
+    </p>
+  <% end %>
