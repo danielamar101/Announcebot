@@ -1,0 +1,20 @@
+<% if @announcement.blank? %>
+  <p>There are no announcements currently in the system.</p>
+<% else %>
+  <p>These are the current Announcements in our system</p>
+
+  <ul id = "announcement">
+    <% @announcement.each do |c| %>
+      <li><%= link_to c.title, {:action => 'show', :id => c.id} -%></li>
+    <% end %>
+  </ul>
+
+<% end %>
+<p><%= link_to "Add new Announcement", {:action => 'new_post' }%></p>
+
+<p><%= link_to "Delete All Announcements", {:action => 'delete_all' }%></p>
+
+
+<div class="button">
+  <%= link_to "Announce", {:action => 'post_groupme' } %>
+</div>

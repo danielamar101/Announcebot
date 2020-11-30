@@ -1,0 +1,19 @@
+<html>
+
+<head>
+  <title>Shows each announcement</title>
+</head>
+<body>
+
+<h1>Title: <%= @announcement.title%></h1>
+<h2>Announcement: <%= @announcement.announcementText%></h2>
+<h2>Date: <%= @announcement.date%></h2>
+<h2>Time: <%= @announcement.time%></h2>
+
+
+<!--Creates Button to delete announcement from db -->
+<button><%= link_to 'Delete Announcement', {:action => 'delete', :id => @announcement.id} -%></button>
+</body>
+
+
+</html>

@@ -1,0 +1,11 @@
+
+<% if current_user %>
+<h1>You are already logged in!</h1>
+<% else %>
+<h1>You are not logged in.</h1>
+<% end %>
+
+  <h1>Welcome To Announcebot Home</h1>
+
+  <p><%= link_to "Login", login_path%></p>
+  <p><%= link_to "Signup", signup_path%></p>

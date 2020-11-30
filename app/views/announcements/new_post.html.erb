@@ -1,0 +1,32 @@
+<!-- app/views/application/new_post.html.erb -->
+
+<html>
+<head>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<form method="post" action="/create_post">
+
+  <label>Title</label>
+  <input name="title" type="text" />
+  <br /> <br />
+
+  <label>Announcement</label>
+  <textarea name="announcement"></textarea>
+  <br /> <br />
+
+  <label>Date</label>
+  <input name="date" type="text" />
+  <br /> <br />
+
+  <label>Time</label>
+  <input name="time" type="text" />
+  <br /> <br />
+
+  <input type="submit" value="Create Announcement" />
+
+</form>
+
+</body>
+</html>

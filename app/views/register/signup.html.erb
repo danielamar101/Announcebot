@@ -1,0 +1,27 @@
+
+<html>
+<head>
+  <%= csrf_meta_tags %>
+  <title>Signup page</title>
+</head>
+<body>
+
+<form method="post" action="/try_signup">
+
+  <label>Username</label>
+  <input name="username" type="text" />
+  <br /> <br />
+
+  <label>Password</label>
+  <input name="password" type="password" />
+  <br /> <br />
+
+  <label>Confirm password</label>
+  <input name="password_confirmation" type="password" />
+  <br /> <br />
+  <input type="submit" value="Signup" />
+
+</form>
+
+</body>
+</html>
