@@ -15,7 +15,7 @@ class AnnouncementsController < ApplicationController
 
   #Posts Announcement message to database
   def post_groupme
-    bot_id="0362d66a5b301660702822ff24"
+    bot_id="f49313cd5accdd8ee47731cf72"
     url = "https://api.groupme.com/v3"
 
     #Stores entire db into variable for processing
@@ -156,7 +156,7 @@ class AnnouncementsController < ApplicationController
 
     puts("Text")
 
-    bot_id="0362d66a5b301660702822ff24"
+    bot_id="f49313cd5accdd8ee47731cf72"
     url = "https://api.groupme.com/v3"
 
     post_text = params[:text]
@@ -174,7 +174,7 @@ class AnnouncementsController < ApplicationController
         #
         if( Time.now.to_i - Rails.configuration.x.start_time> 30 || Rails.configuration.x.hasnt_posted_even_once)
 
-          Rails.configuration.x.start_time = Time.now.to_f
+          Rails.configuration.x.start_time = Time.now.to_i
           redirect_to :action => 'post_groupme'
           Rails.configuration.x.hasSpoken = false
           Rails.configuration.x.hasnt_posted_even_once = false
