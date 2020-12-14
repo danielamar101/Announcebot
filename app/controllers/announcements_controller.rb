@@ -172,15 +172,15 @@ class AnnouncementsController < ApplicationController
       else
         #if its not empty, redirect to content poster.
         #
-        if( Time.now.to_i - Rails.configuration.x.start_time> 30 || Rails.configuration.x.hasnt_posted_even_once)
+        if( Time.now.to_i - Rails.configuration.x.start_time> 1800 || Rails.configuration.x.hasnt_posted_even_once)
 
           Rails.configuration.x.start_time = Time.now.to_i
           redirect_to :action => 'post_groupme'
           Rails.configuration.x.hasSpoken = false
           Rails.configuration.x.hasnt_posted_even_once = false
           shouldPost = false
-        elsif (Time.now.to_i - Rails.configuration.x.start_time < 30 && !Rails.configuration.x.hasSpoken)
-          text = "On 30 minute timedown."
+        elsif (Time.now.to_i - Rails.configuration.x.start_time < 1800 && !Rails.configuration.x.hasSpoken)
+          text = "On a 30 minute cooldown. Scroll up for recent announcements."
           Rails.configuration.x.hasSpoken = true
         else
           shouldPost = false
