@@ -1,19 +1,26 @@
-<html>
-
-<head>
-  <title>Shows each announcement</title>
-</head>
-<body>
-
-<h1>Title: <%= @announcement.title%></h1>
-<h2>Announcement: <%= @announcement.announcementText%></h2>
-<h2>Date: <%= @announcement.date%></h2>
-<h2>Time: <%= @announcement.time%></h2>
 
 
-<!--Creates Button to delete announcements from db -->
-<button><%= link_to 'Delete Announcement', {:action => 'delete', :id => @announcement.id} -%></button>
-</body>
+<div class="container" id ="home-container">
+  <div class="jumbotron-new-an rounded" id ="new-an-jumbotron">
+
+    <div class="row">
+
+      <div class="w-auto mx-auto">
+        <div class="jumbotron-white">
+          <div class="font-of-an">
+            <h1>Title: <%= @announcement.title%></h1>
+            <h3>Announcement: <%= @announcement.announcementText%></h3>
+            <h5>Date: <%= @announcement.date%></h5>
+            <h5>Time: <%= @announcement.time%></h5>
+
+            <!--Creates Button to delete announcements from db -->
+            <button><%= link_to 'Delete Announcement', {:action => 'delete', :id => @announcement.id} -%></button>
+          </div>
+        </div>
 
 
-</html>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

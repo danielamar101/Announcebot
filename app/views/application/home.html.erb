@@ -1,11 +1,44 @@
-<h1>Welcome To Announcebot Home</h1>
-<% if current_user %>
-<h1>You are logged in as <%= current_user.username %></h1>
-  <p><%= link_to "Go To Home", index_path%></p>
-<% else %>
-<h1>You are not logged in.</h1>
-<% end %>
-
-<br>
 
 
+<div class="container" id ="home-container">
+  <div class="jumbotron" id ="home-jumbotron">
+
+    <div class="row">
+      <div class="w-50 mx-auto">
+        <div class="jumbotron" id="welcome-text">
+          <h2>Welcome To Announcebot Home</h2>
+          <h5 id="small-home-text">A TMB Production...</h5>
+        </div>
+      </div>
+
+    </div>
+
+    <%if(current_user) %>
+      <div class="row">
+        <div class="w-50 mx-auto">
+          <div class="jumbotron" id="welcome-text">
+            <div class="col align-self-center">
+            <%= link_to "Home", index_path, class: "small-home-text"%>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    <% end %>
+
+    <%if(access_tools) %>
+      <div class="row">
+        <div class="w-50 mx-auto">
+          <div class="jumbotron" id="welcome-text">
+            <div class="col align-self-center">
+              <h1>Admin Tools</h1>
+              <%= link_to "Key Creator", key_form_path, class: "small-home-text"%>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+    </div>
+</div>

@@ -1,5 +1,8 @@
 class AnnouncementsController < ApplicationController
 
+  before_action #:set_time
+
+
   def list
     #Array of announcements objects from db
     @announcement = Announcement.all
@@ -14,9 +17,6 @@ class AnnouncementsController < ApplicationController
   def post_groupme
     bot_id="0362d66a5b301660702822ff24"
     url = "https://api.groupme.com/v3"
-
-    #Creates an array of announcements objects
-    all_announcements = Array.new
 
     #Stores entire db into variable for processing
     @announcements = Announcement.all
@@ -50,10 +50,17 @@ class AnnouncementsController < ApplicationController
 
       #output status of post to console
       puts resp.status
-    end
 
+
+    end
     #redirect back to list page
     redirect_to :action => 'list'
+
+  end
+
+  def disable_btn
+    puts "Got here."
+
   end
 
 
@@ -111,53 +118,122 @@ class AnnouncementsController < ApplicationController
       insertion_val.announcementText= params['announcements']['announcement']
     end
 
+    #Title Simply added
     insertion_val.title= params['announcements']['title']
-    insertion_val.date= params['announcements']['date']
-    insertion_val.time= params['announcements']['time']
+
+    #Replaces : with / for date
+    insertion_val.date= "#{params['announcements']['date'][5,2]}/#{params['announcements']['date'][8,2]}"
+
+
+    time = params['announcements']['time']
+
+    #Gets hour portion of time
+    hour_portion = time[0,2].to_i
+
+    #Gets minute eportion of time
+    minute_portion = time[3,2].to_i
+
+    #Fixes time to not make it 24 hours lol(Murica)
+    if(hour_portion > 12)
+      hour_portion = hour_portion - 12
+      day_clock = "#{hour_portion}:#{minute_portion}PM"
+    elsif(hour_portion == 12)
+      day_clock = "1:#{minute_portion}AM"
+
+    else
+      day_clock = "#{hour_portion}:#{minute_portion}AM"
+    end
+
+    insertion_val.time=day_clock
     insertion_val.save
 
-    #redirected to
+    #redirected to list page of all announcements
     redirect_to :action => 'list'
   end
 
+
   def handle_webhook
+
+    puts("Text")
 
     bot_id="0362d66a5b301660702822ff24"
     url = "https://api.groupme.com/v3"
 
     post_text = params[:text]
 
+    shouldPost = true
+
     case post_text
+
     when "/announce"
       #Checks if theres anything in announcements db
       if(Announcement.all.size == 0)
         text = "No announcements currently."
       else
         #if its not empty, redirect to content poster.
-        redirect_to :action => 'post_groupme'
+        #
+        if( Time.now.to_i - Rails.configuration.x.start_time> 30 || Rails.configuration.x.hasnt_posted_even_once)
+
+          Rails.configuration.x.start_time = Time.now.to_f
+          redirect_to :action => 'post_groupme'
+          Rails.configuration.x.hasSpoken = false
+          Rails.configuration.x.hasnt_posted_even_once = false
+          shouldPost = false
+        elsif (Time.now.to_i - Rails.configuration.x.start_time < 30 && !Rails.configuration.x.hasSpoken)
+          text = "On 30 minute timedown."
+          Rails.configuration.x.hasSpoken = true
+        else
+          shouldPost = false
+        end
+        # TODO: Check If the command was used recently,
+        #
+        # TODO: If So, alert once saying error
+        #
+        # TODO: Next Time, don't alert
+
+
+
       end
 
     when "/info"
-      text = "Created due to boredom"
+      text = "GORTS baby"
     when "/face"
       text = "( ͡° ͜ʖ ͡°)"
+    when "/deepquote"
+      text = "As Above, So Below."
+    when "/debug"
+      #text = "Elapsed Time Since Initialization: #{Time.now.to_f - Rails.configuration.x.t1} "
+      text = "Time since last /announce call: #{Time.now.to_i - Rails.configuration.x.start_time}"
+      #Case for when user tries to
+
     end
 
-    #Submit Post Request
-    resp = Faraday.post('https://api.groupme.com/v3/bots/post') do |req|
-      #Bot ID JSON header
-      req.params['bot_id'] = bot_id
+    if(shouldPost)
+      #Submit Post Request
+      resp = Faraday.post('https://api.groupme.com/v3/bots/post') do |req|
+        #Bot ID JSON header
+        req.params['bot_id'] = bot_id
 
-      #Actual Text header Header
-      req.params['text'] = text
+        #Actual Text header Header
+        req.params['text'] = text
 
-      #format of info being sent
-      req.headers['Content-Type'] = 'application/json'
+        #format of info being sent
+        req.headers['Content-Type'] = 'application/json'
+      end
+
+      #output status of post to console
+      puts resp.status
+
     end
-
-    #output status of post to console
-    puts resp.status
-
   end
+
+  # private
+  # def set_time
+  #
+  #   if(!Rails.configuration.x.toggle)
+  #     Rails.configuration.x.start_time = Time.now.to_f
+  #     Rails.configuration.x.toggle = true
+  #   end
+  # end
 
 end

@@ -1,0 +1,8 @@
+
+$(document).on('turbolinks:load',function() {
+    $(".announce-btn").click(function () {
+        $(".announce-btn").prop('disabled',true)
+        $(".announce-btn").html = "Test"
+        console.log("This is a fat test2. It actually worked...")
+    });
+});

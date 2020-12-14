@@ -10,6 +10,49 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap
  *= require_tree .
  *= require_self
  */
+
+body {
+    background: white;
+    font-family: sans-serif;
+
+}
+
+table, th, td {
+    border: 1px solid firebrick;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    background:lightgray;
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+header{
+    width: 100%;
+    background: firebrick;
+    color: whitesmoke;
+    height: 50px;
+}
+.test{
+    line-height: 50px;
+    display: grid;
+    grid-template-columns: 25% 50% auto 25%;
+    white-space: nowrap;
+    color: white;
+}
+login{
+    display: inline-block;
+    float: right;
+}
+signout{
+    display: inline-block;
+    margin-right: 50px;
+}
+image{
+    object-fit: cover;
+    margin-right: 50px;
+}

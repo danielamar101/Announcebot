@@ -1,27 +1,42 @@
 
-<html>
-<head>
-  <%= csrf_meta_tags %>
-  <title>Signup page</title>
-</head>
-<body>
 
-<form method="post" action="/try_signup">
+<div class="container" id ="home-container">
+  <div class="jumbotron-new-an rounded" id ="new-an-jumbotron">
 
-  <label>Username</label>
-  <input name="username" type="text" />
-  <br /> <br />
+    <div class="row">
+      <div class="w-auto mx-auto col-md-4">
+        <div class="jumbotron-signup-white">
+          <h1>Signup</h1>
+          <%= form_with scope: :register, url: try_signup_path, local: true do |f| %>
+            <p>
+              <%= f.label :"Username" %><br/>
+              <%= f.text_field :username %>
+            </p>
 
-  <label>Password</label>
-  <input name="password" type="password" />
-  <br /> <br />
+            <p>
+              <%= f.label :"Password" %><br/>
+              <%= f.password_field :password %>
+            </p>
 
-  <label>Confirm password</label>
-  <input name="password_confirmation" type="password" />
-  <br /> <br />
-  <input type="submit" value="Signup" />
+            <p>
+              <%= f.label :"Password Confirmation" %><br/>
+              <%= f.password_field :password_confirmation %>
+            </p>
 
-</form>
+            <p>
+              <br/><br/><br/>
+              <%= f.label :"Invite Key" %><br/>
+              <%= f.label :"Thats right fool you need a super duper secret key to make an account", class: "sm-key-txt" %>
+              <%= f.label :"Prevents a malicious user like you from getting in", class: "sm-key-txt" %>
+              <%= f.password_field :invite_key %>
+            </p>
 
-</body>
-</html>
+            <p>
+              <%= f.submit :"Login" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,29 @@
 
-<h1>Login</h1>
 
-<%= form_with scope: :session, url: session_path, local: true do |f| %>
-  <p>
-    <%= f.label :"Username" %><br/>
-    <%= f.text_field :username %>
-  </p>
+<div class="container" id ="home-container">
+  <div class="jumbotron-new-an rounded" id ="new-an-jumbotron">
 
-    <%= f.label :"Password" %><br/>
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.submit :"Login" %>
-  </p>
-<% end %>
+    <div class="row">
+
+      <div class="w-auto mx-auto col-md-4">
+        <div class="jumbotron-signup-white">
+          <h1>Login</h1>
+
+          <%= form_with scope: :session, url: session_path, local: true do |f| %>
+            <p>
+              <%= f.label :"Username" %><br/>
+              <%= f.text_field :username %>
+            </p>
+
+            <%= f.label :"Password" %><br/>
+            <%= f.password_field :password %>
+            </p>
+            <p>
+              <%= f.submit :"Login" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

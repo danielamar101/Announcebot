@@ -1,27 +1,38 @@
+<div class="container" id ="home-container">
+  <div class="jumbotron-new-an rounded" id ="new-an-jumbotron">
 
-<h1>New Post</h1>
-<%= form_with scope: :announcements, url: create_post_path, local: true do |f| %>
-    <p>
-      <%= f.label :"Title" %><br/>
-      <%= f.text_field :title %>
-    </p>
+    <div class="row">
 
-    <p>
-      <%= f.label :"Announcement Body" %><br/>
-      <%= f.text_field :announcement %>
-    </p>
+      <div class="w-auto mx-auto">
+        <div class="jumbotron-all-white">
+          <h1>New Announcement</h1>
+          <%= form_with scope: :announcements, url: create_post_path, local: true do |f| %>
+            <p>
+              <%= f.label :"Title" %><br/>
+              <%= f.text_field(:title, maxlength: 30) %>
+            </p>
 
-    <p>
-      <%= f.label :"Date" %><br/>
-      <%= f.text_field :date %>
-    </p>
+            <p>
+              <%= f.label :"Announcement Body" %><br/>
+              <%= f.text_field(:announcement, maxlength: 50) %>
+            </p>
 
-    <p>
-      <%= f.label :"Time" %><br/>
-      <%= f.text_field :time %>
-    </p>
+            <p>
+              <%= f.label :"Date" %><br/>
+              <%= f.date_field :date %>
+            </p>
 
-    <p>
-      <%= f.submit  %>
-    </p>
-  <% end %>
+            <p>
+              <%= f.label :"Time" %><br/>
+              <%= f.time_field :time %>
+            </p>
+
+            <p>
+              <%= f.submit :"Save New Announcement" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

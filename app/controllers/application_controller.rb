@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
+
   def home
   end
 
@@ -13,5 +14,9 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
+  end
+
+  def access_tools
+    @current_user.isAdmin ||= User.find_by(id: session[:user_id]).isAdmin?
   end
 end

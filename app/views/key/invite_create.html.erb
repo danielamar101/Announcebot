@@ -1,0 +1,42 @@
+
+
+<div class="container" id ="home-container">
+  <div class="jumbotron-new-an rounded" id ="new-an-jumbotron">
+
+    <div class="row">
+      <div class="w-auto mx-auto col-md-4">
+        <div class="jumbotron-signup-white">
+          <h2 class="font-of-an">Create Invite Code</h2>
+          <%= form_with scope: :key, url: key_create_path, local: true do |f| %>
+            <p>
+              <br/>
+              <%= f.password_field :key %>
+              <br/>
+            </p>
+<br/>
+            <p>
+              <%= f.submit :"Create" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="w-auto mx-auto col-md-4">
+        <div class="jumbotron-signup-white">
+          <h1 class="font-of-an">Current Codes</h1>
+
+          <ol type="1" id ="aKey">
+            <% @key.each do |c| %>
+              <div class="row">
+                <li>  <%= c.key%>     <%=link_to 'Delete',{:action => 'delete', :id => c.id} %></li>
+              </div>
+            <% end %>
+          </ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
