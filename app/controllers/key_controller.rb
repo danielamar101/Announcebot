@@ -15,7 +15,7 @@ class KeyController < ApplicationController
 
 
     #TODO: Make this go back to base page, not home
-    redirect_to root_url
+    redirect_to :action => 'invite_create'
   end
 
 
