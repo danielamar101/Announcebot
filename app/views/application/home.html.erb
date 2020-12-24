@@ -32,10 +32,13 @@
         <div class="w-50 mx-auto">
           <div class="jumbotron" id="welcome-text">
             <div class="col align-self-center">
-            <%= link_to "Home", index_path, class: "small-home-text"%>
+              <%= link_to "Home", index_path, class: "small-home-text"%>
+            <br>
+              <%= link_to "Logout", logout_path, class: "small-home-text"%>
+
+            </div>
           </div>
         </div>
-      </div>
       </div>
     <% end %>
 
@@ -53,5 +56,5 @@
 
     <% end %>
 
-    </div>
+  </div>
 </div>
